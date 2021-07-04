@@ -3,7 +3,7 @@
 > ## Success Case
 
 1. Receive a POST request -> **/api/{version}/signup**.
-2. Validate required fields **name**, **email**, **password**, **passwordConfirmation**, **birthday**, **genre**.
+2. ✔ Validate required fields **name**, **email**, **password**, **passwordConfirmation**, **birthday**, **genre**.
 3. Validate **password** and **passwordConfirmation** match.
 4. Ensure is a valid **email**.
 5. Validate if already exists an user with informed email.
@@ -20,8 +20,3 @@
 4. Return **400** if is an invalid email
 5. Return **403** if email is already in use
 6. Return **500** if exists a server error
-
-
-> ## Diagram
-
-<div style="width:90vh"><img src="./assets/diagrams/signup.png" /></div>
