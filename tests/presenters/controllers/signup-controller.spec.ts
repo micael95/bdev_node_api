@@ -1,8 +1,9 @@
+import { throwError } from '@/tests/domain/mocks'
 import { SignUpController } from '@/presenters/controllers/signup-controller'
 import faker from 'faker'
-import { MissingParamError } from '@/presenters/errors'
-import { badRequest } from '@/presenters/helpers'
-import { AddAccountSpy, AuthenticationSpy, ValidationSpy } from '@/tests/mocks'
+import { MissingParamError, ServerError } from '@/presenters/errors'
+import { badRequest, serverError } from '@/presenters/helpers'
+import { AddAccountSpy, AuthenticationSpy, ValidationSpy } from '@/tests/presenters/mocks'
 
 const mockRequest = (): SignUpController.Request => {
   const password = faker.internet.password()
@@ -41,5 +42,12 @@ describe('SignUp Controller', () => {
     const httpResponse = await sut.handle(mockRequest())
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse).toEqual(badRequest(validationSpy.error))
+  })
+
+  test('Should return 500 if AddAccount throws', async () => {
+    const { sut, addAccountSpy } = makeSut()
+    jest.spyOn(addAccountSpy, 'add').mockImplementationOnce(throwError)
+    const httpResponse = await sut.handle(mockRequest())
+    expect(httpResponse).toEqual(serverError(new ServerError(null)))
   })
 })
