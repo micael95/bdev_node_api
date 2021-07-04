@@ -1,10 +1,8 @@
-import { Validation } from './../protocols/validation'
-import { AddAccount } from './../../../src/domain/usecases/add-account'
 import { SignUpController } from '@/presenters/controllers/signup-controller'
 import faker from 'faker'
 import { MissingParamError } from '@/presenters/errors'
 import { badRequest } from '@/presenters/helpers'
-import { Authentication } from '@/domain/usecases'
+import { AddAccountSpy, AuthenticationSpy, ValidationSpy } from '@/tests/mocks'
 
 const mockRequest = (): SignUpController.Request => {
   const password = faker.internet.password()
@@ -13,24 +11,6 @@ const mockRequest = (): SignUpController.Request => {
     email: faker.internet.email(),
     password,
     passwordConfirmation: password
-  }
-}
-
-class AuthenticationSpy implements Authentication {
-  auth: (authenticationParams: Authentication.Params) => Promise<Authentication.Result>
-}
-
-class AddAccountSpy implements AddAccount {
-  add: (account: AddAccount.Params) => Promise<boolean>
-}
-
-class ValidationSpy implements Validation {
-  error: Error = null
-  input: any
-
-  validate (input: any): Error {
-    this.input = input
-    return this.error
   }
 }
 
