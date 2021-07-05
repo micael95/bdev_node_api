@@ -82,5 +82,8 @@
     "nodemon": "^2.0.9",
     "swagger-ui-express": "^4.1.6",
     "validator": "^13.6.0"
+  },
+  "_moduleAliases": {
+    "@": "dist"
   }
 }
