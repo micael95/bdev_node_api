@@ -19,20 +19,21 @@
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",
+    "test:coveralls": "npm run test:ci && coveralls < coverage/lcov.info",
     "husky:add": "husky add",
     "lint:staged": "lint-staged"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/micael95/bdev_node_api.git"
+    "url": "git+https://github.com/micael95/bdev_ts_api.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/micael95/bdev_node_api/issues"
+    "url": "https://github.com/micael95/bdev_ts_api/issues"
   },
-  "homepage": "https://github.com/micael95/bdev_node_api#readme",
+  "homepage": "https://github.com/micael95/bdev_ts_api#readme",
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.2.5",
     "@types/bcrypt": "^3.0.0",
