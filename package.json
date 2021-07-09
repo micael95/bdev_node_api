@@ -71,6 +71,7 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "@compwright/oauth2-server": "^3.0.3",
     "apollo-server-express": "^2.25.2",
     "bcrypt": "^5.0.0",
     "express": "^4.17.1",
@@ -80,6 +81,7 @@
     "module-alias": "^2.2.2",
     "mongo-round": "^1.0.0",
     "mongodb": "^3.6.9",
+    "mongoose": "^5.13.2",
     "nodemon": "^2.0.9",
     "swagger-ui-express": "^4.1.6",
     "validator": "^13.6.0"
