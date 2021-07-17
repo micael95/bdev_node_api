@@ -9,4 +9,4 @@
 * App For Clean code, Clean architecture,SOLID, TDD, DEVOPS study 
 
 ## Use Cases
-* [Use Case: Sinup](./requirements/signup.md)
+* [Use Case: SignUp](./requirements/signup.md)
