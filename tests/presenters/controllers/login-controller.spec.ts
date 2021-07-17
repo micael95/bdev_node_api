@@ -2,8 +2,9 @@ import { LoginController } from '@/presenters/controllers'
 import { AuthenticationSpy, ValidationSpy } from '@/tests/presenters/mocks'
 
 import faker from 'faker'
-import { ok, serverError, unauthorized } from '@/presenters/helpers'
+import { badRequest, ok, serverError, unauthorized } from '@/presenters/helpers'
 import { throwError } from '@/tests/domain/mocks'
+import { MissingParamError } from '@/presenters/errors'
 
 const mockRequest = (): LoginController.Request => ({
   email: faker.internet.email(),
@@ -63,5 +64,12 @@ describe('Login Controller', () => {
     const request = mockRequest()
     await sut.handle(request)
     expect(validationSpy.input).toEqual(request)
+  })
+
+  test('Should return 400 if Validation returns an error', async () => {
+    const { sut, validationSpy } = makeSut()
+    validationSpy.error = new MissingParamError(faker.random.word())
+    const httpResponse = await sut.handle(mockRequest())
+    expect(httpResponse).toEqual(badRequest(validationSpy.error))
   })
 })
