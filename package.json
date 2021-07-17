@@ -21,7 +21,8 @@
     "test:ci": "npm test -- --coverage",
     "test:coveralls": "npm run test:ci && coveralls < coverage/lcov.info",
     "husky:add": "husky add",
-    "lint:staged": "lint-staged"
+    "lint:staged": "lint-staged",
+    "jest:clear": "jest --clearCache"
   },
   "repository": {
     "type": "git",
