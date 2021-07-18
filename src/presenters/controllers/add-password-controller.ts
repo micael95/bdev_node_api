@@ -1,15 +1,21 @@
 import { Controller, HttpResponse, Validation } from '@/presenters/protocols'
 import { AddPassword } from '@/domain/usecases/add-password'
-import { noContent } from '@/presenters/helpers'
+import { noContent, serverError } from '@/presenters/helpers'
 
 export class AddPasswordController implements Controller {
   constructor (
     private readonly addPassword: AddPassword,
     private readonly validation: Validation
-  ) {}
+  ) {
+  }
 
   async handle (request: any): Promise<HttpResponse> {
-    return noContent()
+    try {
+      await this.addPassword.add(request.body)
+      return noContent()
+    } catch (err) {
+      return serverError(err)
+    }
   }
 }
 
