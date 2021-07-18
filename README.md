@@ -12,3 +12,4 @@
 ## Use Cases
 * [Use Case: SignUp](./requirements/signup.md)
 * [Use Case: Login](./requirements/login.md)
+* [Use Case: PasswordController](./requirements/password.md)
