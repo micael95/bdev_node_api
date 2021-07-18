@@ -1,7 +1,8 @@
 import { AddPasswordController } from '@/presenters/controllers'
-import { noContent } from '@/presenters/helpers'
+import { noContent, serverError } from '@/presenters/helpers'
 import { ValidationSpy, AddPasswordSpy } from '@/tests/presenters/mocks'
 import faker from 'faker'
+import { throwError } from '@/tests/domain/mocks'
 
 const mockRequest = (): AddPasswordController.Request => ({
   description: faker.random.word(),
@@ -37,5 +38,12 @@ describe('PasswordController', () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(mockRequest())
     expect(httpResponse).toEqual(noContent())
+  })
+
+  test('Should return 500 if AddPassword throws', async () => {
+    const { sut, addPasswordSpy } = makeSut()
+    jest.spyOn(addPasswordSpy, 'add').mockImplementationOnce(throwError)
+    const httpResponse = await sut.handle(mockRequest())
+    expect(httpResponse).toEqual(serverError(new Error()))
   })
 })
