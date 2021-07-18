@@ -11,9 +11,7 @@ const mockRequest = (): AddPasswordController.Request => ({
   },
   tags: [
     faker.random.word()
-  ],
-  createdAt: faker.date.recent(),
-  updatedAt: faker.date.recent()
+  ]
 })
 
 type SutTypes = {
@@ -45,5 +43,12 @@ describe('PasswordController', () => {
     jest.spyOn(addPasswordSpy, 'add').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(mockRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
+  })
+
+  test('Should call AddPassword with correct values', async () => {
+    const { sut, addPasswordSpy } = makeSut()
+    const request = mockRequest()
+    await sut.handle(request)
+    expect(addPasswordSpy.params).toEqual({ ...request })
   })
 })
