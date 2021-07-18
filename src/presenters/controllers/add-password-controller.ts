@@ -11,7 +11,7 @@ export class AddPasswordController implements Controller {
 
   async handle (request: any): Promise<HttpResponse> {
     try {
-      await this.addPassword.add(request.body)
+      await this.addPassword.add(request)
       return noContent()
     } catch (err) {
       return serverError(err)
@@ -22,14 +22,12 @@ export class AddPasswordController implements Controller {
 export namespace AddPasswordController {
   export type Request = {
     description: string
-    category: category
-    tags: tags[]
-    createdAt: Date
-    updatedAt: Date
+    category: Category
+    tags: Tag[]
   }
 
-  type category = {
+  type Category = {
     description
   }
-  type tags = string
+  type Tag = string
 }
