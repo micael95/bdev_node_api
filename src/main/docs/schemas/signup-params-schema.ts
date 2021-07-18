@@ -12,6 +12,9 @@ export const signUpParamsSchema = {
     },
     passwordConfirmation: {
       type: 'string'
+    },
+    masterPasswordSecret: {
+      type: 'string'
     }
   },
   required: ['name', 'email', 'password', 'passwordConfirmation']
