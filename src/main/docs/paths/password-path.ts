@@ -1,14 +1,14 @@
-export const signUpPath = {
+export const passwordPath = {
   post: {
-    tags: ['Login'],
-    summary: 'API for create an account user',
+    tags: ['Password'],
+    summary: 'API for create passwords',
     description: 'This route can be accessed by **any user**',
     requestBody: {
       required: true,
       content: {
         'application/json': {
           schema: {
-            $ref: '#/schemas/signUpParams'
+            $ref: '#/schemas/passwordParams'
           }
         }
       }
@@ -19,7 +19,7 @@ export const signUpPath = {
         content: {
           'application/json': {
             schema: {
-              $ref: '#/schemas/account'
+              $ref: '#/schemas/password'
             }
           }
         }

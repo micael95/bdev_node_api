@@ -11,7 +11,8 @@ const mockRequest = (): SignUpController.Request => {
     name: faker.name.findName(),
     email: faker.internet.email(),
     password,
-    passwordConfirmation: password
+    passwordConfirmation: password,
+    masterPasswordSecret: faker.random.word()
   }
 }
 

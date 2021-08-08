@@ -28,6 +28,9 @@ export default {
   tags: [{
     name: 'Login',
     description: 'Login related APIs'
+  },{
+    name: 'Password',
+    description: 'Password related APIs'
   }],
   paths,
   schemas,

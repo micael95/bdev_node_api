@@ -1,9 +1,9 @@
 import { badRequest, forbidden, ok, serverError } from '@/presenters/helpers'
 import { EmailInUseError } from '@/presenters/errors/email-in-use-error'
 import { AddAccount, Authentication } from '@/domain/usecases'
-import { Validation } from '@/presenters/protocols'
+import { Controller, Validation } from '@/presenters/protocols'
 
-export class SignUpController {
+export class SignUpController implements Controller {
   constructor (
     private readonly addAccount: AddAccount,
     private readonly validation: Validation,
@@ -42,5 +42,6 @@ export namespace SignUpController {
     email: string
     password: string
     passwordConfirmation: string
+    masterPasswordSecret: string
   }
 }
