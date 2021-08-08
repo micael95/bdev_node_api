@@ -1,5 +1,5 @@
 import { AddPasswordController } from '@/presenters/controllers'
-import { noContent, serverError } from '@/presenters/helpers'
+import { badRequest, noContent, serverError } from '@/presenters/helpers'
 import { ValidationSpy, AddPasswordSpy } from '@/tests/presenters/mocks'
 import faker from 'faker'
 import { throwError } from '@/tests/domain/mocks'
@@ -50,5 +50,12 @@ describe('PasswordController', () => {
     const request = mockRequest()
     await sut.handle(request)
     expect(addPasswordSpy.params).toEqual({ ...request })
+  })
+
+  test('Should return 400 if Validation fails', async () => {
+    const { sut, validationSpy } = makeSut()
+    validationSpy.error = new Error()
+    const httpResponse = await sut.handle(mockRequest())
+    expect(httpResponse).toEqual(badRequest(validationSpy.error))
   })
 })
