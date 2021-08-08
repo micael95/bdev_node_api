@@ -4,6 +4,7 @@ export type PasswordModel = {
   categoryId: string
   tags: TagModel[]
   accountId: string
+  password: string
   createdAt: Date
   updatedAt: Date
 }
